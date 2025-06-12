@@ -20,9 +20,10 @@ namespace LerningPlatform.Controllers
         [HttpPost("lesson")]
         public async Task<IActionResult> GetLesson([FromBody] LessonRequest request)
         {
+
             try
             {
-                var lesson = await OpenAI.GetLessonAsync(request.Category, request.SubCategory, request.UserPrompt);
+                 var lesson = await OpenAI.GetLessonAsync(request.Category, request.SubCategory, request.UserPrompt);
                 return Ok(new { lesson });
             }
             catch (HttpRequestException ex) when (ex.StatusCode == System.Net.HttpStatusCode.TooManyRequests)
