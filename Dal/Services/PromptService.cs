@@ -76,4 +76,11 @@ public class PromptService : IPrompt
 
         await db.SaveChangesAsync();
     }
+
+    public async Task<List<Prompt>> GetPromptsByUserIdAsync(int userId)
+    {
+        return await db.Prompts
+            .Where(p => p.UserId == userId)
+            .ToListAsync();
+    }
 }

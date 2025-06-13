@@ -14,6 +14,8 @@ public class BLManager : IBL
     public IBLCategory BLCategory { get; }
     public IBLSubCategory BLSubCategory { get; }
     public IOpenAI OpenAI { get; }
+    public IBLPrompt prompt { get; }
+    
 
     public BLManager(IOpenAI openAI)
     {
@@ -24,6 +26,8 @@ public class BLManager : IBL
         services.AddSingleton<IBLUser, BLUserService>();
         services.AddSingleton<IBLCategory, BLCategoryService>();
         services.AddSingleton<IBLSubCategory, BLSubCategoryService>();
+        services.AddSingleton<IBLPrompt, BLPromptService>();
+
 
         ServiceProvider serviceProvider = services.BuildServiceProvider();
 
@@ -31,6 +35,7 @@ public class BLManager : IBL
         BLCategory = serviceProvider.GetService<IBLCategory>();
         BLSubCategory = serviceProvider.GetService<IBLSubCategory>();
         OpenAI = openAI;
+        prompt = serviceProvider.GetService<IBLPrompt>();
     }
 
 }

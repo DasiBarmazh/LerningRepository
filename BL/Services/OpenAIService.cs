@@ -17,10 +17,6 @@ public class OpenAIService : IOpenAI
 
     public OpenAIService(HttpClient httpClient, IOptions<OpenAISettings> openAISettings)
     {
-        if (string.IsNullOrEmpty(openAISettings.Value.ApiKey))
-        {
-            throw new InvalidOperationException("מפתח ה-API של OpenAI לא הוגדר. אנא ודא ש-'OpenAI:ApiKey' מוגדר ב-appsettings.json, Secret Manager או במשתני סביבה.");
-        }
         _apiKey = openAISettings.Value.ApiKey;
         _modelName = openAISettings.Value.ModelName;
         _httpClient = httpClient; 
@@ -29,6 +25,7 @@ public class OpenAIService : IOpenAI
 
     public async Task<string> GetLessonAsync(string category, string subCategory, string userPrompt)
     {
+
         if (string.IsNullOrEmpty(_apiKey))
             throw new InvalidOperationException("מפתח ה-API של OpenAI לא הוגדר.");
         string fullPrompt = $"המשתמש בחר ללמוד על נושא: '{category}' ותת-נושא: '{subCategory}'. {userPrompt}";

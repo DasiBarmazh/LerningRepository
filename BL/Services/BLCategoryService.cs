@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BL.Api;
+﻿using BL.Api;
 using Dal.Api;
 using Dal.Entities;
 

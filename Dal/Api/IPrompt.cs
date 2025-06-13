@@ -9,5 +9,6 @@ namespace Dal.Api
 {
     public interface IPrompt : Icurd<Prompt>
     {
+        Task<List<Prompt>> GetPromptsByUserIdAsync(int userId);
     }
 }
